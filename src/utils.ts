@@ -9,12 +9,12 @@ export type Item = {
   category: ItemCategory;
 };
 
-export type ItemWithoudID = Omit<Item, "id">;
+export type ItemWithoutID = Omit<Item, "id">;
 
 export const useFlowManager = () => {
   const [items, setItems] = useState<Item[]>([]);
 
-  const handleAddItem = (newItem: ItemWithoudID) => {
+  const handleAddItem = (newItem: ItemWithoutID) => {
     // setItems([...items, { ...newItem, id: Date.now().toString() }]);
     setItems((prev: Item[]) => [
       ...prev,

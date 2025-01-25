@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
-import { type ItemWithoudID, type ItemCategory } from "../utils";
+import { type ItemWithoutID, type ItemCategory } from "../utils";
 
-const Form = ({ onSubmit }: { onSubmit: (item: ItemWithoudID) => void }) => {
+const Form = ({ onSubmit }: { onSubmit: (item: ItemWithoutID) => void }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState<ItemCategory | "">("");
