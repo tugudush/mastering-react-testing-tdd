@@ -29,4 +29,20 @@ describe("Form Component", () => {
     expect(descriptionInput).toHaveValue("");
     expect(categorySelect).toHaveValue("");
   });
+
+  test("submit form with entered values", async () => {
+    const { titleInput, descriptionInput, categorySelect, submitButton } =
+      getFormElements();
+
+    await user.type(titleInput, "New Task");
+    await user.type(descriptionInput, "Task Description");
+    await user.selectOptions(categorySelect, "urgent");
+    await user.click(submitButton);
+
+    expect(mockOnSubmit).toHaveBeenCalledWith({
+      title: "New Task",
+      description: "Task Description",
+      category: "urgent",
+    });
+  });
 });
