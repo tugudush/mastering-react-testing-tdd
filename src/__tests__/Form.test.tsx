@@ -45,4 +45,24 @@ describe("Form Component", () => {
       category: "urgent",
     });
   });
+
+  test("validates required fields", async () => {
+    const { submitButton } = getFormElements();
+    await user.click(submitButton);
+    expect(mockOnSubmit).not.toHaveBeenCalled();
+  });
+
+  test("clears form after successful submission", async () => {
+    const { titleInput, descriptionInput, categorySelect, submitButton } =
+      getFormElements();
+
+    await user.type(titleInput, "New Task");
+    await user.type(descriptionInput, "Task Description");
+    await user.selectOptions(categorySelect, "urgent");
+    await user.click(submitButton);
+
+    expect(titleInput).toHaveValue("");
+    expect(descriptionInput).toHaveValue("");
+    expect(categorySelect).toHaveValue("");
+  });
 });
