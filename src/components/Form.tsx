@@ -8,6 +8,18 @@ const Form = ({ onSubmit }: { onSubmit: (item: ItemWithoudID) => void }) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!title || !description || !category) return;
+
+    onSubmit({
+      title,
+      description,
+      category,
+    });
+
+    setTitle("");
+    setDescription("");
+    setCategory("");
   };
 
   const labelStyles = "text-sm font-medium leading-none block mb-2";
@@ -55,9 +67,11 @@ const Form = ({ onSubmit }: { onSubmit: (item: ItemWithoudID) => void }) => {
           </label>
           <select
             id="category"
+            value={category}
             onChange={(e) => {
               setCategory(e.target.value as ItemCategory);
             }}
+            required
             className={inputStyles}
           >
             <option value="">Select Category</option>
